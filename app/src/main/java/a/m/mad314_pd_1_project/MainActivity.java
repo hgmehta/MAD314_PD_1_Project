@@ -27,13 +27,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setUpNavigation();
     }
 
     public void setUpNavigation(){
-        toolbar = findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        toolbar = findViewById(R.id.toolBar);
+////        setSupportActionBar(toolbar);
+////        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+////        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
