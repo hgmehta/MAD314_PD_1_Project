@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+
 public class HomeFragment extends Fragment {
 
 
@@ -19,6 +20,14 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+
+
+
+    public HomeFragment() {
+        // Required empty public constructor
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -2,8 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation_fragment"
-    app:startDestination="@id/homeFragment">
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/homeFragment"
+    tools:ignore="UnusedNavigation">
     <fragment
         android:id="@+id/homeFragment"
         android:name="a.m.mad314_pd_1_project.HomeFragment"
