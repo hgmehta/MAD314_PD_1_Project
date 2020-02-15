@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+
+
+        <TextView
+            android:id="@+id/Hello"
+            android:text="Hello"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/Hellosignup"
+            android:text="Register!"
+            android:textSize="30dp"
+            android:layout_below="@id/Hello"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:id="@+id/nameLayout"
+            android:layout_below="@id/Hellosignup"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp">
+
+            <ImageView
+                android:id="@+id/namelogo"
+                android:layout_width="28sp"
+                android:layout_height="28sp"
+                android:src="@drawable/username"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+            <EditText
+                android:id="@+id/name_editText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/namelogo"
+                android:hint="Enter Name"
+                android:paddingLeft="10dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/emailLayout"
+            android:layout_below="@+id/nameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            >
+
+            <ImageView
+                android:id="@+id/emaillogo"
+                android:layout_width="28sp"
+                android:layout_height="28sp"
+                android:src="@drawable/email"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+            <EditText
+                android:id="@+id/email_editText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/emaillogo"
+                android:hint="Enter Email-Id"
+                android:paddingLeft="10dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/passwordLayout"
+            android:layout_below="@+id/emailLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:id="@+id/passwordlogo"
+                android:layout_width="28sp"
+                android:layout_height="28sp"
+                android:src="@drawable/password"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+            <EditText
+                android:id="@+id/password_editText"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/passwordlogo"
+                android:hint="Enter Password"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/cpasswordLayout"
+            android:layout_below="@+id/passwordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp">
+
+            <ImageView
+                android:id="@+id/cpasswordlogo"
+                android:layout_width="28sp"
+                android:layout_height="28sp"
+                android:src="@drawable/password"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                />
+            <EditText
+                android:inputType="textPassword"
+                android:id="@+id/confirmPassword"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/cpasswordlogo"
+                android:hint="Confirm Password"
+                android:paddingLeft="10dp"/>
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cpasswordLayout"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="30dp"
+            android:text="Sign-up"
+            android:textColor="@android:color/white"
+            android:background="@color/colorAccent"/>
+
+
+        <TextView
+            android:id="@+id/alreadyUser_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already a user? Login"
+            android:layout_below="@+id/signUpButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorAccent"/>
+    </RelativeLayout>
+
+</RelativeLayout>
