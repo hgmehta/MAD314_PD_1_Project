@@ -31,10 +31,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void setUpNavigation(){
-//        toolbar = findViewById(R.id.toolBar);
-////        setSupportActionBar(toolbar);
-////        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-////        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
