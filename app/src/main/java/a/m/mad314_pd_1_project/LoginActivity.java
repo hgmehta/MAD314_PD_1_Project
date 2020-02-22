@@ -42,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_login);
-        //final String emailSample="movie@rental.com";
-        //final String passwordSample="123456";
 
         intentToHome=new Intent(this,MainActivity.class);
         intentToRegister=new Intent(this,RegisterActivity.class);
@@ -55,9 +53,6 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                HomeFragment fragment=new HomeFragment();
-//                FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
 
                 if(TextUtils.isEmpty(editTextUsername.getText().toString()))
                 {
@@ -74,16 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     String pass=editTextPassword.getText().toString();
                     loginUser(email,pass);
 
-                    /*
-                    if(email.equals(emailSample) && pass.equals(passwordSample)) {
-                        startActivity(intentToHome);
-                    }
-                    else
-                    {
-                        Toast.makeText(getApplicationContext(),"Wrong Credentials", Toast.LENGTH_LONG).show();
-                    }
 
-                     */
                 }
             }
         });
@@ -104,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
         firebaseUser=firebaseAuth.getCurrentUser();
         if(firebaseUser!=null)
         {
-            //Toast.makeText(getActivity().getApplicationContext(),"Already logged in",Toast.LENGTH_LONG).show();
             updateUI(firebaseUser);
         }
     }

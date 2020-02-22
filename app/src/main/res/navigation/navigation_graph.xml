@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="a.m.mad314_pd_1_project.HomeFragment"
-        android:label="fragment_home"
+        android:label="Dashboard"
         tools:layout="@layout/fragment_home" />
 </navigation>
