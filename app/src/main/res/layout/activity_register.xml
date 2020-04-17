@@ -1,158 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".RegisterActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/register_logo"
+        android:src="@drawable/ic_movie"
+        />
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:textSize="30sp"
+        android:id="@+id/register_headline"
+        android:layout_below="@+id/register_logo"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/loginBackGround"
+        android:text="Register !"
+        />
 
 
-        <TextView
-            android:id="@+id/Hello"
-            android:text="Hello"
-            android:textSize="20dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="40dp"
-            android:textColor="@color/colorAccent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/Hellosignup"
-            android:text="Register!"
-            android:textSize="30dp"
-            android:layout_below="@id/Hello"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/colorAccent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_below="@+id/register_headline"
+        android:layout_width="match_parent"
+        android:id="@+id/register_form_wrapper"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/nameLayout"
-            android:layout_below="@id/Hellosignup"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="50dp">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/namelogo"
-                android:layout_width="28sp"
-                android:layout_height="28sp"
-                android:src="@drawable/username"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                />
-            <EditText
-                android:id="@+id/name_editText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/namelogo"
-                android:hint="Enter Name"
-                android:paddingLeft="10dp"/>
-        </RelativeLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_margin="20dp"
+                android:id="@+id/register_card"
+                android:layout_height="wrap_content">
 
-        <RelativeLayout
-            android:id="@+id/emailLayout"
-            android:layout_below="@+id/nameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp"
-            >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/emaillogo"
-                android:layout_width="28sp"
-                android:layout_height="28sp"
-                android:src="@drawable/email"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                />
-            <EditText
-                android:id="@+id/email_editText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/emaillogo"
-                android:hint="Enter Email-Id"
-                android:paddingLeft="10dp"/>
-        </RelativeLayout>
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Name"
+                        android:inputType="textPersonName"
+                        android:id="@+id/register_edit_name"
+                        android:drawableLeft="@drawable/ic_person_outline"
+                        />
 
-        <RelativeLayout
-            android:id="@+id/passwordLayout"
-            android:layout_below="@+id/emailLayout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="20dp"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:id="@+id/register_edit_email"
+                        android:drawableLeft="@drawable/ic_email"
+                        />
 
-            <ImageView
-                android:id="@+id/passwordlogo"
-                android:layout_width="28sp"
-                android:layout_height="28sp"
-                android:src="@drawable/password"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                />
-            <EditText
-                android:id="@+id/password_editText"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/passwordlogo"
-                android:hint="Enter Password"
-                android:inputType="textPassword"
-                android:paddingLeft="10dp"/>
-        </RelativeLayout>
+                    <EditText
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:id="@+id/register_edit_password"
+                        android:drawableLeft="@drawable/ic_vpn_key"
+                        />
 
-        <RelativeLayout
-            android:id="@+id/cpasswordLayout"
-            android:layout_below="@+id/passwordLayout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="15dp">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="40dp"
+                        android:hint="Confirm Password"
+                        android:inputType="textPassword"
+                        android:id="@+id/register_edit_confirmPassword"
+                        android:drawableLeft="@drawable/ic_vpn_key"
+                        />
 
-            <ImageView
-                android:id="@+id/cpasswordlogo"
-                android:layout_width="28sp"
-                android:layout_height="28sp"
-                android:src="@drawable/password"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                />
-            <EditText
-                android:inputType="textPassword"
-                android:id="@+id/confirmPassword"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/cpasswordlogo"
-                android:hint="Confirm Password"
-                android:paddingLeft="10dp"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
         </RelativeLayout>
 
         <Button
-            android:id="@+id/signUpButton"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cpasswordLayout"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="30dp"
-            android:text="Sign-up"
-            android:textColor="@android:color/white"
-            android:background="@color/colorAccent"/>
+            android:textAllCaps="false"
+            android:id="@+id/register_button_register"
+            android:background="@drawable/login_button_corner_radius"
+            android:textColor="@color/white"
+            android:text="Register"
+            android:layout_gravity="center"
+            android:layout_marginTop="-46dp"
+            android:elevation="15dp"/>
+    </LinearLayout>
 
-
-        <TextView
-            android:id="@+id/alreadyUser_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Already a user? Login"
-            android:layout_below="@+id/signUpButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/colorAccent"/>
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/register_text_login"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already a user? Login Here !"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/text_view_underline"
+        android:layout_marginBottom="30dp"
+        android:textSize="15dp"
+        android:textColor="@color/textColor"
+        android:layout_marginTop="10dp"
+        />
 
 </RelativeLayout>

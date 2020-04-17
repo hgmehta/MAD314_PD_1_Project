@@ -39,12 +39,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         firebaseAuth=FirebaseAuth.getInstance();
 
-        alreadyUser = findViewById(R.id.alreadyUser_textView);
-        signUp = findViewById(R.id.signUpButton);
-        name = findViewById(R.id.name_editText);
-        email = findViewById(R.id.email_editText);
-        password = findViewById(R.id.password_editText);
-        confirmPassword = findViewById(R.id.confirmPassword);
+        alreadyUser = findViewById(R.id.register_text_login);
+        signUp = findViewById(R.id.register_button_register);
+        name = findViewById(R.id.register_edit_name);
+        email = findViewById(R.id.register_edit_email);
+        password = findViewById(R.id.register_edit_password);
+        confirmPassword = findViewById(R.id.register_edit_confirmPassword);
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -46,10 +46,10 @@ public class LoginActivity extends AppCompatActivity {
         intentToHome=new Intent(this,MainActivity.class);
         intentToRegister=new Intent(this,RegisterActivity.class);
 
-        editTextUsername=findViewById(R.id.editText_login_username);
-        editTextPassword=findViewById(R.id.editText_login_password);
-        buttonLogin=findViewById(R.id.button_login);
-        textViewRegister=findViewById(R.id.textView_register);
+        editTextUsername=findViewById(R.id.login_edit_email);
+        editTextPassword=findViewById(R.id.login_edit_password);
+        buttonLogin=findViewById(R.id.login_button_login);
+        textViewRegister=findViewById(R.id.login_text_register);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
