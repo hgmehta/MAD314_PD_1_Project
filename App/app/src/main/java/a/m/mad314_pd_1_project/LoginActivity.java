@@ -15,12 +15,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import a.m.mad314_pd_1_project.requestmodel.LoginRequestModel;
+import a.m.mad314_pd_1_project.responsemodel.LoginResponseModel;
+import a.m.mad314_pd_1_project.responsemodel.ResponseModel;
+import a.m.mad314_pd_1_project.service.IUserService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,16 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextUsername, editTextPassword;
     TextView textViewRegister;
 
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        firebaseAuth=FirebaseAuth.getInstance();
-
 
         setContentView(R.layout.activity_login);
 
@@ -87,44 +81,44 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        firebaseUser=firebaseAuth.getCurrentUser();
-        if(firebaseUser!=null)
-        {
-            updateUI(firebaseUser);
-        }
     }
 
 
-    public void loginUser(String email, String password)
+    public void loginUser(final String email, String password)
     {
-        firebaseAuth.signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful())
-                        {
-                            firebaseUser=firebaseAuth.getCurrentUser();
-                            Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_SHORT);
-                            updateUI(firebaseUser);
-                        }
-                    }
-                }).addOnFailureListener(this, new OnFailureListener() {
+        final IUserService service = RetrofitClient.getRetrofitInstance().create(IUserService.class);
+
+        LoginRequestModel request = new LoginRequestModel();
+        request.email = email;
+        request.password = password;
+
+        Call<ResponseModel<LoginResponseModel>> call = service.login(request);
+
+        call.enqueue(new Callback<ResponseModel<LoginResponseModel>>() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            public void onResponse(Call<ResponseModel<LoginResponseModel>> call, Response<ResponseModel<LoginResponseModel>> response) {
+                ResponseModel<LoginResponseModel> responseModel = response.body();
+
+                if(responseModel != null && responseModel.getError() != null && !responseModel.getError().equals("")){
+                    Toast.makeText(getApplicationContext(), responseModel.getError(), Toast.LENGTH_LONG).show();
+                }else{
+                    LoginResponseModel loginResponse = responseModel.getResponse();
+
+                    UserSession session = UserSession.getInstance();
+                    session.setEmail(email);
+                    session.setUserId(loginResponse.getUserId());
+                    session.setToken(loginResponse.getToken());
+                    startActivity(intentToHome);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseModel<LoginResponseModel>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
             }
         });
     }
-
-
-    public void updateUI(FirebaseUser user)
-    {
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("user",user);
-        startActivity(intentToHome);
-    }
-
 
 
 }

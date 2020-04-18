@@ -3,6 +3,7 @@ package a.m.mad314_pd_1_project;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,11 +11,14 @@ import android.widget.Button;
 public class HomeActivity extends AppCompatActivity {
 
     Button login, signUp;
-
+    UserSession session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("session", 0); // 0 - for private mode
+        session = UserSession.getInstance(preferences);
 
         login = findViewById(R.id.home_button_login);
         signUp = findViewById(R.id.home_button_register);

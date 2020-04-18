@@ -14,30 +14,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import a.m.mad314_pd_1_project.requestmodel.RegisterRequestModel;
+import a.m.mad314_pd_1_project.responsemodel.ResponseModel;
+import a.m.mad314_pd_1_project.service.IUserService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
     EditText name,email,password,confirmPassword;
     TextView alreadyUser;
     Button signUp;
-    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        firebaseAuth=FirebaseAuth.getInstance();
 
         alreadyUser = findViewById(R.id.register_text_login);
         signUp = findViewById(R.id.register_button_register);
@@ -82,17 +78,11 @@ public class RegisterActivity extends AppCompatActivity {
                     else
                     {
                         createUsers(nameFromUser,emailID,pass);
-
-                        Intent intentToLogin = new Intent(RegisterActivity.this,LoginActivity.class);
-                        startActivity(intentToLogin);
                     }
 
                 }
             }
         });
-
-
-
 
         alreadyUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,40 +97,33 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void createUsers(final String name, final String email, String password)
     {
-        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        final IUserService service = RetrofitClient.getRetrofitInstance().create(IUserService.class);
+
+        RegisterRequestModel registerRequestModel = new RegisterRequestModel();
+        registerRequestModel.email = email;
+        registerRequestModel.name = name;
+        registerRequestModel.password = password;
+
+        Call<ResponseModel<String>> call = service.register(registerRequestModel);
+
+        call.enqueue(new Callback<ResponseModel<String>>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+            public void onResponse(Call<ResponseModel<String>> call, Response<ResponseModel<String>> response) {
+                ResponseModel<String> apiResponse = response.body();
 
-                    Map<String, Object> usermap = new HashMap<>();
-                    usermap.put("name", name);
-                    usermap.put("email", email);
-
-
-                    db.collection("user").document(user.getUid()).set(usermap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(getApplicationContext(), "Register success", Toast.LENGTH_LONG).show();
-                            FirebaseAuth.getInstance().signOut();
-                            Intent _intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                            startActivity(_intent);
-
-                        }
-                    });
-                }else
-                {
-                    System.out.println("Error"+task.getException());
+                if(apiResponse != null && apiResponse.getError() != null && !apiResponse.getError().equals("")){
+                    Toast.makeText(getApplicationContext(), apiResponse.getError(), Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), apiResponse.getResponse(), Toast.LENGTH_LONG).show();
+                    Intent intentToLogin = new Intent(RegisterActivity.this,LoginActivity.class);
+                    startActivity(intentToLogin);
                 }
             }
 
-        }).addOnFailureListener(this, new OnFailureListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+            public void onFailure(Call<ResponseModel<String>> call, Throwable t) {
+
             }
         });
-
     }
 }
