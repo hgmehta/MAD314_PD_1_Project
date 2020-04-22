@@ -1,0 +1,5 @@
+insert into movies
+(movieName,duration,description,image,categoryId,rentPrice)
+values
+('Blumhouse’s Fantasy Island','01:50','The enigmatic Mr. Roarke makes the secret dreams of his guests come true at a luxurious tropical resort. But when the fantasies turn into nightmares, the visitors must soon solve the island's mystery in order to escape with their lives.','',5,19.99),
+('Bloodshot','01:49','Ray Garrison is brought back to life by the RST corporation after being killed in action. With an army of nanotechnology in his veins, he’s an unstoppable force--stronger than ever and able to heal instantly. But in controlling his body, the company has sway over his mind and memories, too. Now, Ray doesn’t know what’s real and what’s not -- but he’s on a mission to find out.','',1,9.99);

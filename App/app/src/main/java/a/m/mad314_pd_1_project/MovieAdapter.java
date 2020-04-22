@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import a.m.mad314_pd_1_project.responsemodel.MovieResponse;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,11 +19,11 @@ import java.util.ArrayList;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
-    private ArrayList<Movie> movies;
+    private ArrayList<MovieResponse> movies;
     private View.OnClickListener movieListener;
 
 
-    public MovieAdapter(ArrayList<Movie> movies, Context c) {
+    public MovieAdapter(ArrayList<MovieResponse> movies, Context c) {
         this.movies = movies;
     }
 
@@ -34,7 +35,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return new ViewHolder(view);
     }
 
-    public void setOnItemClickListner(View.OnClickListener itemClickListner)
+    public void setOnItemClickListener(View.OnClickListener itemClickListner)
     {
         movieListener = itemClickListner;
     }
@@ -42,10 +43,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Picasso.get().load(movies.get(position).image).into(holder.movie_image);
-        holder.movie_name.setText(movies.get(position).name);
-        holder.movie_duration.setText(movies.get(position).dutation);
-        holder.movie_rating.setText(movies.get(position).rating);
+        Picasso.get().load(movies.get(position).getImage()).into(holder.movie_image);
+        holder.movie_name.setText(movies.get(position).getMovieName());
+        holder.movie_duration.setText(movies.get(position).getDuration());
+        holder.movie_category.setText(movies.get(position).getCategoryName());
     }
 
     @Override
@@ -57,8 +58,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     {
         ImageView movie_image;
         TextView movie_name;
+        TextView movie_category;
         TextView movie_duration;
-        TextView movie_rating;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,7 +67,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             movie_image = itemView.findViewById(R.id.movie_image);
             movie_name = itemView.findViewById(R.id.movie_name);
             movie_duration = itemView.findViewById(R.id.movie_duration);
-            movie_rating = itemView.findViewById(R.id.movie_rating);
+            movie_category = itemView.findViewById(R.id.movie_category);
 
             itemView.setTag(this);
             itemView.setOnClickListener(movieListener);

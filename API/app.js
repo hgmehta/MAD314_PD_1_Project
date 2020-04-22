@@ -20,6 +20,53 @@ app.get('/', (req, res, next) => {
     res.json({'data':'Working', 'error': null});
 });
 
+/* Movie api get*/
+
+
+app.get('/api/movies', (request, response)=>{
+
+    sql = "select * from movies inner join category on category.categoryid = movies.categoryId;";
+
+    con.query(sql, function(err, result){
+
+        con.on('error', (err)=>{
+            console.log('[MySQL Error]', err);
+        });
+
+        var list = [];
+        if(result && result.length){
+            for(var i =0; i< result.length; i++){
+                var data = {};
+                data['movieId'] = result[i].movieId;
+                data['movieName'] = result[i].movieName;
+                data['duration']=result[i].duration;
+                data['description']=result[i].description;
+                data['image']=result[i].image;
+                data['categoryName']=result[i].categoryName;
+                data['rentPrice']=result[i].rentPrice;
+                
+                data['movie']
+                list.push(data);
+            }
+            response.json({'data': list, 'error': null});
+        }else{
+            res.json({'data': null, 'error': 'No Data Found!'});
+        }
+    });
+
+});
+
+
+// Rent api 
+
+app.post('/api/rentMovie/',(req,res) => {
+
+    console.log(req.body);
+    var data = req.body;
+    var rent
+
+});
+
 
 /* Register API */
 app.post('/api/register/', (req,res) => {

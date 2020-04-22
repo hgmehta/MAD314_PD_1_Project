@@ -38,23 +38,28 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Movie Name"
-                    android:textSize="25sp" />
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    />
 
                 <TextView
-                    android:id="@+id/movie_rating"
+                    android:id="@+id/movie_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/movie_name"
-                    android:text="Movie Rating"
-                    android:textSize="20sp" />
+                    android:text="Category"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                     />
 
                 <TextView
                     android:id="@+id/movie_duration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/movie_rating"
-                    android:text="Movie Rating"
-                    android:textSize="18sp" />
+                    android:layout_below="@+id/movie_category"
+                    android:text="Movie Duration"
+                    android:textSize="20dp"
+                    android:textColor="#000000"/>
             </LinearLayout>
 
         </LinearLayout>

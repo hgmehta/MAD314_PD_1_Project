@@ -10,4 +10,9 @@
         android:name="a.m.mad314_pd_1_project.HomeFragment"
         android:label="Dashboard"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="a.m.mad314_pd_1_project.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail" />
 </navigation>

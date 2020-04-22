@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-
         intentToHome=new Intent(this,MainActivity.class);
         intentToRegister=new Intent(this,RegisterActivity.class);
 
