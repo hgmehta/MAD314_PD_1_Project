@@ -5,10 +5,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class MovieResponse {
 
-
-
-
-
         @SerializedName("movieId")
         @Expose
         private Integer movieId;

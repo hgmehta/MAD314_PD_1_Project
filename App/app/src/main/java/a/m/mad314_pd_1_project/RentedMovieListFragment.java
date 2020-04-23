@@ -3,19 +3,17 @@ package a.m.mad314_pd_1_project;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import a.m.mad314_pd_1_project.responsemodel.MovieResponse;
+import a.m.mad314_pd_1_project.responsemodel.RentedListResponse;
 import a.m.mad314_pd_1_project.responsemodel.ResponseModel;
 import a.m.mad314_pd_1_project.service.IDataService;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,34 +31,35 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-public class HomeFragment extends Fragment {
+public class RentedMovieListFragment extends Fragment {
 
     MovieAdapter adapter;
-    ArrayList<MovieResponse> movies;
+    ArrayList<RentedListResponse> movies;
     View itemView;
     RecyclerView recyclerView;
     TextView emptyMessage;
     IDataService dataService;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        setHasOptionsMenu(true);
-    }
-
-    public HomeFragment() {
+    public RentedMovieListFragment() {
         // Required empty public constructor
     }
 
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_rented_movie_list, container, false);
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -71,12 +70,12 @@ public class HomeFragment extends Fragment {
 
         itemView = view;
         IDataService service = RetrofitClient.getRetrofitInstance().create(IDataService.class);
-        Call<ResponseModel<ArrayList<MovieResponse>>> call = service.getMovies();
+        Call<ResponseModel<ArrayList<RentedListResponse>>> call = service.getRentedMovies();
 
-        call.enqueue(new Callback<ResponseModel<ArrayList<MovieResponse>>>() {
+        call.enqueue(new Callback<ResponseModel<ArrayList<RentedListResponse>>>() {
             @Override
-            public void onResponse(Call<ResponseModel<ArrayList<MovieResponse>>> call, Response<ResponseModel<ArrayList<MovieResponse>>> response) {
-                ResponseModel<ArrayList<MovieResponse>> responseModel = response.body();
+            public void onResponse(Call<ResponseModel<ArrayList<RentedListResponse>>> call, Response<ResponseModel<ArrayList<RentedListResponse>>> response) {
+                ResponseModel<ArrayList<RentedListResponse>> responseModel = response.body();
                 //movies = new ArrayList<Movie>(movie);
 
                 if(responseModel != null && responseModel.getError() != null) {
@@ -93,7 +92,7 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ResponseModel<ArrayList<MovieResponse>>> call, Throwable t) {
+            public void onFailure(Call<ResponseModel<ArrayList<RentedListResponse>>> call, Throwable t) {
                 Toast.makeText(getActivity().getApplicationContext(), "Something Went Wrong!" + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
@@ -106,36 +105,17 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public void generateRecyclerView(ArrayList<MovieResponse> movies, View view){
-        adapter = new MovieAdapter(movies,getActivity().getApplication());
+    public void generateRecyclerView(ArrayList<RentedListResponse> movies, View view){
+        adapter = new MovieAdapter(movies,getActivity().getApplication(),0);
         GridLayoutManager gridLayout = new GridLayoutManager(getActivity().getApplicationContext(),1);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_movies);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_rentedMovies);
         recyclerView.setLayoutManager(gridLayout);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(onItemClickMovie);
+        //adapter.setOnItemClickListener();
+
     }
 
 
-    public View.OnClickListener onItemClickMovie = new View.OnClickListener(){
-
-        @Override
-        public void onClick(View v) {
-
-            RecyclerView.ViewHolder viewHolder= (RecyclerView.ViewHolder) v.getTag();
-            int position = viewHolder.getAdapterPosition();
-            Bundle bundle = new Bundle();
-            MovieResponse movie = movies.get(position);
-            bundle.putString("id",movie.getMovieId().toString());
-            bundle.putString("image", movie.getImage());
-            bundle.putString("name", movie.getMovieName());
-            //bundle.putString("cast", movie.getCast());
-            bundle.putString("duration", movie.getDuration());
-            bundle.putString("description", movie.getDescription());
-            bundle.putString("category", movie.getCategoryName());
-            bundle.putString("rentPrice", movie.getRentPrice().toString());
-            Navigation.findNavController(v).navigate(R.id.movieDetailFragment, bundle);
-        }
-    };
 
 
     @Override
@@ -156,9 +136,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void moveToNewActivity () {
-        UserSession.getInstance().clearSession();
+
         Intent i = new Intent(getActivity(), LoginActivity.class);
         startActivity(i);
         ((Activity) getActivity()).overridePendingTransition(0, 0);
+
     }
 }

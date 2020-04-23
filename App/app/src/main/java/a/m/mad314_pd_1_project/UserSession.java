@@ -44,7 +44,7 @@ class UserSession {
         userPreferences.edit().putString("token", token).commit();
     }
 
-    public String getUseId(){
+    public String getUserId(){
         return userPreferences.getString("userId", "");
     }
 

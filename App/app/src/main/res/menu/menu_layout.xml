@@ -5,7 +5,12 @@
     <group android:checkableBehavior="single">
 
         <item android:id="@+id/homeFragment"
-            android:title="Home Fragment"
+            android:title="Movies"
+            android:icon="@drawable/ic_launcher_background"
+            />
+
+        <item android:id="@+id/rentedMovieListFragment"
+            android:title="Renting History"
             android:icon="@drawable/ic_launcher_background"
             />
 

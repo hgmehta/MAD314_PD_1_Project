@@ -37,9 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navController = Navigation.findNavController(this,R.id.hostFragment);
         NavigationUI.setupActionBarWithNavController(this,navController,drawerLayout);
         NavigationUI.setupWithNavController(navigationView,navController);
-
         navigationView.setNavigationItemSelectedListener(this);
-
     }
     public void onBackPressed() {
 
@@ -48,10 +46,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else {
             super.onBackPressed();
-
         }
-
     }
+
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(Navigation.findNavController(this,R.id.hostFragment),drawerLayout);
     }
@@ -60,19 +57,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         menuItem.setCheckable(true); //to highlight the fragments
         drawerLayout.closeDrawers();
-
         int id = menuItem.getItemId();
-
         switch (id){
             case R.id.homeFragment:
-                Toast.makeText(getApplicationContext(),"first clicked",Toast.LENGTH_LONG).show();
                 navController.navigate(R.id.homeFragment);
                 break;
+
+            case R.id.rentedMovieListFragment:
+                navController.navigate(R.id.rentedMovieListFragment);
+                break;
         }
-
-
         return true;
     }
-
-
 }

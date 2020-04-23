@@ -13,6 +13,11 @@
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="a.m.mad314_pd_1_project.MovieDetailFragment"
-        android:label="fragment_movie_detail"
+        android:label="Movie Details"
         tools:layout="@layout/fragment_movie_detail" />
+    <fragment
+        android:id="@+id/rentedMovieListFragment"
+        android:name="a.m.mad314_pd_1_project.RentedMovieListFragment"
+        android:label="Your Movies"
+        tools:layout="@layout/fragment_rented_movie_list" />
 </navigation>
