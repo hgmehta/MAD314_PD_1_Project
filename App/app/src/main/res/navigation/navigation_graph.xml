@@ -20,4 +20,6 @@
         android:name="a.m.mad314_pd_1_project.RentedMovieListFragment"
         android:label="Your Movies"
         tools:layout="@layout/fragment_rented_movie_list" />
+
+
 </navigation>

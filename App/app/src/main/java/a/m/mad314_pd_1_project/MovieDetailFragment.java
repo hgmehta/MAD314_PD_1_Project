@@ -44,7 +44,7 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
 
 
     TextView movieName, movieDesc, movieRatings, movieDuration,movieCategory,movieRentPrice;
-    ImageView movieImage;
+    ImageView movieImage,anotherImage;
     ArrayList<MovieResponse> movieArrayList;
     Button rentMovie;
     int movieId;
@@ -72,7 +72,8 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         movieImage = view.findViewById(R.id.imageView_movieImageDetail);
         movieDuration = view.findViewById(R.id.textView_movieDurationDetail);
         movieCategory=view.findViewById(R.id.textView_movieCategoryDetail);
-        movieRentPrice=view.findViewById(R.id.textView_movieRentPriceDetail);
+       // movieRentPrice=view.findViewById(R.id.textView_movieRentPriceDetail);
+        anotherImage= view.findViewById(R.id.imageview_anotherImage);
         rentMovie = view.findViewById(R.id.button_rentMovie);
         movieDesc.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
 
@@ -87,10 +88,12 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         String rentPrice=bundle.getString("rentPrice");
         movieName.setText("Name : " + name);
         movieDuration.setText("Duration : " + duration);
+        rentMovie.setText("$" + rentPrice + " Rent");
         movieDesc.setText(desc);
         Picasso.get().load(logo).into(movieImage);
+        Picasso.get().load(logo).into(anotherImage);
         movieCategory.setText("Category : "+ category);
-        movieRentPrice.setText("RentPrice : "+ rentPrice);
+        //movieRentPrice.setText("RentPrice : "+ rentPrice);
 
     }
 

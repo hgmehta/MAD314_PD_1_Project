@@ -9,4 +9,5 @@
     <color name="loginBackGround">#78a1f6</color>
     <color name="textColor">#C51F64</color>
     <color name="Purple300" tools:ignore="MissingDefaultResource">#9575CD</color>
+    <color name="toolbar">#ECECEC</color>
 </resources>

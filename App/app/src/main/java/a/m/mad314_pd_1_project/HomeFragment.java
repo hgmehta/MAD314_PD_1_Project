@@ -134,7 +134,9 @@ public class HomeFragment extends Fragment {
             bundle.putString("category", movie.getCategoryName());
             bundle.putString("rentPrice", movie.getRentPrice().toString());
             Navigation.findNavController(v).navigate(R.id.movieDetailFragment, bundle);
-        }
+
+
+    }
     };
 
 
