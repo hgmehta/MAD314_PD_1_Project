@@ -72,18 +72,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             if(movies.get(position).getImage() != null && !movies.get(position).getImage().equals("")){
                 Picasso.get().load(movies.get(position).getImage()).into(holder.movie_image);
             }
-            holder.movie_name.setText(movies.get(position).getMovieName());
-            holder.movie_duration.setText(movies.get(position).getDuration());
-            holder.movie_category.setText(movies.get(position).getCategoryName());
+          //  holder.movie_name.setText(movies.get(position).getMovieName());
+          //  holder.movie_duration.setText(movies.get(position).getDuration());
+          //  holder.movie_category.setText(movies.get(position).getCategoryName());
         }
 
         else if(isRented)
         {
             Picasso.get().load(rentedMovies.get(position).getImage()).into(holder.movie_imageRL);
             holder.movie_nameRL.setText(rentedMovies.get(position).getMovieName());
-            holder.movie_rentPriceRL.setText(rentedMovies.get(position).getRentPrice().toString());
-            holder.movie_rentDateRL.setText(rentedMovies.get(position).getRentedDate().substring(0,10));
-            holder.movie_dueDateRL.setText(rentedMovies.get(position).getDueDate().substring(0,10));
+            holder.movie_rentPriceRL.setText("Price : "+rentedMovies.get(position).getRentPrice().toString());
+            holder.movie_rentDateRL.setText("Rented On : "+rentedMovies.get(position).getRentedDate().substring(0,10));
+            holder.movie_dueDateRL.setText("DueDate : "+rentedMovies.get(position).getDueDate().substring(0,10));
 
         }
     }
@@ -110,10 +110,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             movie_rentDateRL=itemView.findViewById(R.id.rentedDate_RL);
             movie_dueDateRL=itemView.findViewById(R.id.dueDate_RL);
 
-            movie_image = itemView.findViewById(R.id.movie_image);
-            movie_name = itemView.findViewById(R.id.movie_name);
-            movie_duration = itemView.findViewById(R.id.movie_duration);
-            movie_category = itemView.findViewById(R.id.movie_category);
+            movie_image = itemView.findViewById(R.id.imageView_movieIcon);
+         //   movie_name = itemView.findViewById(R.id.movie_name);
+         //   movie_duration = itemView.findViewById(R.id.movie_duration);
+         //   movie_category = itemView.findViewById(R.id.movie_category);
 
             itemView.setTag(this);
             itemView.setOnClickListener(movieListener);

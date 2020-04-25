@@ -21,14 +21,13 @@
 
             <ImageView
                 android:id="@+id/movie_image_RL"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:scaleType="fitStart"
-                android:cropToPadding="true"
-                android:adjustViewBounds="true"
                 android:layout_centerVertical="true"
-                />
+                android:layout_gravity="center_vertical"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:scaleType="fitStart" />
 
             <TextView
                 android:id="@+id/movie_name_RL"
@@ -41,7 +40,9 @@
                 android:layout_toRightOf="@+id/movie_image_RL"
                 />
 
+
             <LinearLayout
+
 
                 android:orientation="vertical"
                 android:layout_marginLeft="20dp"

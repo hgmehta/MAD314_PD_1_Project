@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment {
 
     public void generateRecyclerView(ArrayList<MovieResponse> movies, View view){
         adapter = new MovieAdapter(movies,getActivity().getApplication());
-        GridLayoutManager gridLayout = new GridLayoutManager(getActivity().getApplicationContext(),1);
+        GridLayoutManager gridLayout = new GridLayoutManager(getActivity().getApplicationContext(),2);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_movies);
         recyclerView.setLayoutManager(gridLayout);
         recyclerView.setAdapter(adapter);
