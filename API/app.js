@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 var con = mysql.createConnection({
     host:"localhost",
     user: "root",
-    password: "himanshu123",
+    password: "harsh8797",
     database: "movieRental"
 });
 
@@ -187,7 +187,6 @@ app.post('/api/login/', (req,res) => {
                     console.log('[MySQL Error]', err);
                     throw(err);
                 });
-                var userid = result[0].userid;
 
                 if(result && result.length){
 

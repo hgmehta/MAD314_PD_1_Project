@@ -90,8 +90,10 @@ public class MovieDetailFragment extends Fragment implements View.OnClickListene
         movieDuration.setText("Duration : " + duration);
         rentMovie.setText("$" + rentPrice + " Rent");
         movieDesc.setText(desc);
-        Picasso.get().load(logo).into(movieImage);
-        Picasso.get().load(logo).into(anotherImage);
+        if(logo != null && !logo.equals("")){
+            Picasso.get().load(logo).into(movieImage);
+            Picasso.get().load(logo).into(anotherImage);
+        }
         movieCategory.setText("Category : "+ category);
         //movieRentPrice.setText("RentPrice : "+ rentPrice);
 

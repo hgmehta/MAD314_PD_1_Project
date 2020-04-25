@@ -69,7 +69,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if(isMovie) {
-            Picasso.get().load(movies.get(position).getImage()).into(holder.movie_image);
+            if(movies.get(position).getImage() != null && !movies.get(position).getImage().equals("")){
+                Picasso.get().load(movies.get(position).getImage()).into(holder.movie_image);
+            }
             holder.movie_name.setText(movies.get(position).getMovieName());
             holder.movie_duration.setText(movies.get(position).getDuration());
             holder.movie_category.setText(movies.get(position).getCategoryName());

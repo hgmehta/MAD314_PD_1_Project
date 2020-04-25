@@ -161,6 +161,7 @@ public class HomeFragment extends Fragment {
         UserSession.getInstance().clearSession();
         Intent i = new Intent(getActivity(), LoginActivity.class);
         startActivity(i);
-        ((Activity) getActivity()).overridePendingTransition(0, 0);
+        ((Activity)getActivity()).finish();
+        //((Activity) getActivity()).overridePendingTransition(0, 0);
     }
 }
