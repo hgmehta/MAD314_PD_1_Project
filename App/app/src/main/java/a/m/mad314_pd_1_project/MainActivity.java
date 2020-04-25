@@ -1,5 +1,6 @@
 package a.m.mad314_pd_1_project;
 
+import a.m.mad314_pd_1_project.responsemodel.LoginResponseModel;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +12,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public DrawerLayout drawerLayout;
     public NavController navController;
     public NavigationView navigationView;
+    LoginResponseModel loginResponseModel=new LoginResponseModel();
 
 
     @Override
@@ -34,10 +38,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
+        View headerView = navigationView.getHeaderView(0);
+
+        ((TextView)headerView.findViewById(R.id.loggedIn_email)).setText(UserSession.getInstance().getEmail());
+        ((TextView)headerView.findViewById(R.id.loggedIn_name)).setText(UserSession.getInstance().getName());
+
         navController = Navigation.findNavController(this,R.id.hostFragment);
         NavigationUI.setupActionBarWithNavController(this,navController,drawerLayout);
         NavigationUI.setupWithNavController(navigationView,navController);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
     public void onBackPressed() {
 
@@ -54,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
 
 
         int id = menuItem.getItemId();

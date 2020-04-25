@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 var con = mysql.createConnection({
     host:"localhost",
     user: "root",
-    password: "harsh8797",
+    password: "himanshu123",
     database: "movieRental"
 });
 
@@ -85,7 +85,6 @@ app.get('/api/rentedMovieList/', (request, response)=>{
             }
             response.json({'data': list, 'error': null});
         }else{
-            //response.json({'data' : data.rentedBy,'error' : null});
            response.json({'data': null, 'error': 'No Data Found!'});
         }
     });
@@ -181,16 +180,19 @@ app.post('/api/login/', (req,res) => {
     var password = crypto.createHash('sha256').update(data.password).digest('hex');
     var email = data.email;
 
-            con.query('SELECT userid FROM users WHERE email = ? AND password  = ?', [email, password], function(err, result, fields){
+            con.query('SELECT userid,name FROM users WHERE email = ? AND password  = ?', [email, password], function(err, result, fields){
 
                 con.on('error', (err)=> {
                     console.log('[MySQL Error]', err);
                     throw(err);
                 });
+                var userid = result[0].userid;
+                var name=result[0].name;
 
                 if(result && result.length){
 
                     var userid = result[0].userid;
+                    var name=result[0].name;
 
                     /* If Token Already Exists */
                     con.query('SELECT 1 FROM token WHERE userid = ?', [userid], function(err, result, fields){
@@ -221,7 +223,7 @@ app.post('/api/login/', (req,res) => {
                                 console.log('[MySQL Error]', err);
                             });
                             if (result.affectedRows==1){
-                                res.json( {'data': {'token': token, 'userid' : userid}, 'error' : null });
+                                res.json( {'data': {'token': token, 'userid' : userid,'name' : name}, 'error' : null });
                             }else{
                                 res.json({ 'data': null,  'error': 'Something went wrong, Please try after sometime!'});
                             }

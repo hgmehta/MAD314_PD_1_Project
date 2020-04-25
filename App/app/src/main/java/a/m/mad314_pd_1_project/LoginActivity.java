@@ -107,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                     session.setEmail(email);
                     session.setUserId(loginResponse.getUserId());
                     session.setToken(loginResponse.getToken());
+                    session.setName(loginResponse.getName());
                     startActivity(intentToHome);
                     finish();
                 }

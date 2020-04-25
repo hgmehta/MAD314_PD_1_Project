@@ -44,6 +44,10 @@ class UserSession {
         userPreferences.edit().putString("token", token).commit();
     }
 
+    public void setName(String name){
+        userPreferences.edit().putString("name", name).commit();
+    }
+
     public String getUserId(){
         return userPreferences.getString("userId", "");
     }
@@ -55,4 +59,6 @@ class UserSession {
     public String getToken(){
         return userPreferences.getString("token", "");
     }
+
+    public String getName(){return userPreferences.getString("name" ,"");}
 }

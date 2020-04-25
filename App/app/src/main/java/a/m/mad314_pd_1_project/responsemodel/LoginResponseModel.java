@@ -13,6 +13,18 @@ public class LoginResponseModel {
     @Expose
     private String userid;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @SerializedName("name")
+    @Expose
+    private String name;
+
     public String getUserId() {
         return userid;
     }
