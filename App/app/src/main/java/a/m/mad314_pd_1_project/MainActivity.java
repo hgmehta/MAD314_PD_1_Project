@@ -55,8 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        menuItem.setCheckable(true); //to highlight the fragments
-        drawerLayout.closeDrawers();
+
         int id = menuItem.getItemId();
         switch (id){
             case R.id.homeFragment:
@@ -67,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navController.navigate(R.id.rentedMovieListFragment);
                 break;
         }
+        menuItem.setCheckable(true); //to highlight the fragments
+        drawerLayout.closeDrawers();
         return true;
     }
 }

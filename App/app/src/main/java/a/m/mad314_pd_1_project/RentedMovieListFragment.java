@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import a.m.mad314_pd_1_project.requestmodel.RentRequestModel;
+import a.m.mad314_pd_1_project.responsemodel.LoginResponseModel;
 import a.m.mad314_pd_1_project.responsemodel.MovieResponse;
 import a.m.mad314_pd_1_project.responsemodel.RentedListResponse;
 import a.m.mad314_pd_1_project.responsemodel.ResponseModel;
@@ -65,12 +67,14 @@ public class RentedMovieListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         emptyMessage=view.findViewById(R.id.textView_empty_movieList_message);
+        UserSession session=UserSession.getInstance();
+        String userId=session.getUserId() ;
 
-        //initRecyclerView(view);
-
+        RentRequestModel rentRequestModel=new RentRequestModel();
+        rentRequestModel.rentedBy=userId;
         itemView = view;
         IDataService service = RetrofitClient.getRetrofitInstance().create(IDataService.class);
-        Call<ResponseModel<ArrayList<RentedListResponse>>> call = service.getRentedMovies();
+        Call<ResponseModel<ArrayList<RentedListResponse>>> call = service.getRentedMovies(userId);
 
         call.enqueue(new Callback<ResponseModel<ArrayList<RentedListResponse>>>() {
             @Override
@@ -114,9 +118,6 @@ public class RentedMovieListFragment extends Fragment {
         //adapter.setOnItemClickListener();
 
     }
-
-
-
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
